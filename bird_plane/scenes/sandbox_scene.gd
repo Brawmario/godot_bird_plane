@@ -1,8 +1,8 @@
 extends Node3D
 
 @export var smooth_follow: Sandbox_BirdPlaneCoreSmoothFollowSmoothFollow
-@export var thrust: CPPScript_BirdPlaneCoreThrustThrust
-@export var turning: CPPScript_BirdPlaneCoreTurningTurning
+@export var thrust: Sandbox_BirdPlaneCoreThrustThrust
+@export var turning: Sandbox_BirdPlaneCoreTurningTurning
 
 var sensitivity: float
 var mouse_speed: Vector2

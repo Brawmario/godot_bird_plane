@@ -7,44 +7,6 @@ static float thrust_delta = 0;
 static float gravity_influence = 100;
 static float smooth = 0.9;
 
-SANDBOXED_PROPERTIES(6, {
-	.name = "velocity",
-	.type = Variant::FLOAT,
-	.getter = []() -> Variant { return velocity; },
-	.setter = [](Variant value) -> Variant { velocity = value; return velocity; },
-	.default_value = velocity,
-}, {
-	.name = "thrust",
-	.type = Variant::FLOAT,
-	.getter = []() -> Variant { return thrust; },
-	.setter = [](Variant value) -> Variant { thrust = value; return thrust; },
-	.default_value = thrust,
-}, {
-	.name = "thrust_limit",
-	.type = Variant::FLOAT,
-	.getter = []() -> Variant { return thrust_limit; },
-	.setter = [](Variant value) -> Variant { thrust_limit = value; return thrust_limit; },
-	.default_value = thrust_limit,
-}, {
-	.name = "thrust_delta",
-	.type = Variant::FLOAT,
-	.getter = []() -> Variant { return thrust_delta; },
-	.setter = [](Variant value) -> Variant { thrust_delta = value; return thrust_delta; },
-	.default_value = thrust_delta,
-}, {
-	.name = "gravity_influence",
-	.type = Variant::FLOAT,
-	.getter = []() -> Variant { return gravity_influence; },
-	.setter = [](Variant value) -> Variant { gravity_influence = value; return gravity_influence; },
-	.default_value = gravity_influence,
-}, {
-	.name = "smooth",
-	.type = Variant::FLOAT,
-	.getter = []() -> Variant { return smooth; },
-	.setter = [](Variant value) -> Variant { smooth = value; return smooth; },
-	.default_value = smooth,
-});
-
 static Variant _physics_process_plane(double delta, Node3D plane) {
 	if (is_editor_hint()) {
 		return Nil;
@@ -71,6 +33,12 @@ static Variant _physics_process_plane(double delta, Node3D plane) {
 }
 
 int main() {
-	ADD_API_FUNCTION(_physics_process_plane, "void", "double, Node3D");
-	halt();
+	ADD_PROPERTY(velocity, Variant::FLOAT);
+	ADD_PROPERTY(thrust, Variant::FLOAT);
+	ADD_PROPERTY(thrust_limit, Variant::FLOAT);
+	ADD_PROPERTY(thrust_delta, Variant::FLOAT);
+	ADD_PROPERTY(gravity_influence, Variant::FLOAT);
+	ADD_PROPERTY(smooth, Variant::FLOAT);
+
+	ADD_API_FUNCTION(_physics_process_plane, "void", "double delta, Node3D plane", "Thrust calculations");
 }

@@ -2,7 +2,7 @@
 
 const double sensitivity = 1.0;
 
-extern "C" Variant _input_plane(InputEventMouseMotion input, Node3D plane, Vector2 input_mouse_speed) {
+static Variant _input_plane(InputEventMouseMotion input, Node3D plane, Vector2 input_mouse_speed) {
 	if (is_editor_hint()) {
 		return Nil;
 	}
@@ -16,6 +16,5 @@ extern "C" Variant _input_plane(InputEventMouseMotion input, Node3D plane, Vecto
 }
 
 int main() {
-	ADD_API_FUNCTION(_input_plane, "void", "InputEventMouseMotion, Node3D, Vector2");
-	halt();
+	ADD_API_FUNCTION(_input_plane, "void", "InputEventMouseMotion input, Node3D plane, Vector2 input_mouse_speed", "Makes the control plane follow mouse movement smoothly");
 }
